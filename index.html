@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevRuby Solutions Hub | Sistemas Inteligentes para Negócios Reais</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Exo+2:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Background futurista -->
+    <div class="background-grid"></div>
+    <div class="particles-container" id="particles"></div>
+    
+    <!-- Header/Navigation -->
+    <header class="glass-header">
+        <div class="container">
+            <nav class="main-nav">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <div class="logo-text">
+                        <span class="logo-ruby">DevRuby</span>
+                        <span class="logo-solutions">Solutions Hub</span>
+                    </div>
+                </div>
+                
+                <ul class="nav-links">
+                    <li><a href="#home" class="nav-link active" data-page="home">Início</a></li>
+                    <li><a href="#areas" class="nav-link" data-page="areas">Áreas</a></li>
+                    <li><a href="#sobre" class="nav-link" data-page="sobre">Sobre</a></li>
+                    <li><a href="#contato" class="nav-link" data-page="contato">Contato</a></li>
+                </ul>
+                
+                <div class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section id="home" class="page-section active">
+            <div class="container">
+                <div class="hero">
+                    <div class="hero-content">
+                        <h1 class="hero-title">
+                            <span class="title-line">Sistemas <span class="highlight">inteligentes</span></span>
+                            <span class="title-line">para <span class="highlight">negócios reais</span></span>
+                        </h1>
+                        <p class="hero-subtitle">
+                            Explore ideias de sistemas personalizados para mais de 15 segmentos de mercado. 
+                            Cada solução é pensada para otimizar processos, aumentar vendas e impulsionar seu negócio.
+                        </p>
+                        <div class="hero-buttons">
+                            <a href="#areas" class="btn-primary">Explorar Áreas <i class="fas fa-arrow-right"></i></a>
+                            <a href="#contato" class="btn-secondary">Falar com Especialista</a>
+                        </div>
+                    </div>
+                    <div class="hero-visual">
+                        <div class="floating-cube">
+                            <div class="cube-face front"></div>
+                            <div class="cube-face back"></div>
+                            <div class="cube-face left"></div>
+                            <div class="cube-face right"></div>
+                            <div class="cube-face top"></div>
+                            <div class="cube-face bottom"></div>
+                        </div>
+                        <div class="hero-glow"></div>
+                    </div>
+                </div>
+                
+                <div class="stats">
+                    <div class="stat-card">
+                        <div class="stat-number">15+</div>
+                        <div class="stat-label">Áreas de Atuação</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">Projetos Pré-desenvolvidos</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Personalizáveis</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Áreas Section -->
+        <section id="areas" class="page-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Áreas de <span class="highlight">Atuação</span></h2>
+                    <p class="section-subtitle">Selecione uma área para visualizar ideias de sistemas específicos para seu segmento</p>
+                </div>
+                
+                <div class="areas-grid" id="areasGrid">
+                    <!-- Cards serão gerados via JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Sobre Section -->
+        <section id="sobre" class="page-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Sobre a <span class="highlight">DevRuby</span></h2>
+                    <p class="section-subtitle">Tecnologia de ponta para transformar seu negócio</p>
+                </div>
+                
+                <div class="about-content">
+                    <div class="about-text">
+                        <h3>Transformamos ideias em sistemas funcionais</h3>
+                        <p>
+                            A <span class="highlight">DevRuby Solutions Hub</span> é uma vitrine de ideias de sistemas e sites desenvolvidos com tecnologia de ponta para diferentes segmentos de mercado.
+                        </p>
+                        <p>
+                            Cada projeto apresentado aqui foi meticulosamente planejado para resolver problemas reais de negócios, 
+                            otimizar processos e aumentar a eficiência operacional.
+                        </p>
+                        <p>
+                            Nossa abordagem futurista e focada em resultados garante que cada sistema não apenas funcione, 
+                            mas também proporcione uma experiência excepcional para você e seus clientes.
+                        </p>
+                        
+                        <div class="features">
+                            <div class="feature">
+                                <i class="fas fa-bolt feature-icon"></i>
+                                <h4>Desenvolvimento Ágil</h4>
+                                <p>Metodologias modernas para entregas rápidas e eficientes.</p>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-shield-alt feature-icon"></i>
+                                <h4>Segurança em Primeiro Lugar</h4>
+                                <p>Protocolos de segurança avançados para proteger seus dados.</p>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-mobile-alt feature-icon"></i>
+                                <h4>Design Responsivo</h4>
+                                <p>Sistemas que funcionam perfeitamente em todos os dispositivos.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="about-visual">
+                        <div class="about-card glass-card">
+                            <div class="about-card-header">
+                                <h4>Por que escolher a DevRuby?</h4>
+                            </div>
+                            <ul class="about-list">
+                                <li><i class="fas fa-check-circle"></i> Design futurista e premium</li>
+                                <li><i class="fas fa-check-circle"></i> Tecnologia de ponta</li>
+                                <li><i class="fas fa-check-circle"></i> Suporte especializado</li>
+                                <li><i class="fas fa-check-circle"></i> Atualizações constantes</li>
+                                <li><i class="fas fa-check-circle"></i> Integração com APIs</li>
+                                <li><i class="fas fa-check-circle"></i> Escalabilidade garantida</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contato Section -->
+        <section id="contato" class="page-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Entre em <span class="highlight">Contato</span></h2>
+                    <p class="section-subtitle">Pronto para transformar seu negócio? Fale com nossos especialistas</p>
+                </div>
+                
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <div class="contact-card glass-card">
+                            <h3><i class="fas fa-comments"></i> Vamos conversar</h3>
+                            <p>Descreva sua necessidade e nossa equipe entrará em contato com uma proposta personalizada.</p>
+                            
+                            <div class="contact-details">
+                                <div class="contact-item">
+                                    <i class="fas fa-envelope"></i>
+                                    <div>
+                                        <h4>Email</h4>
+                                        <p>contato@devruby.com</p>
+                                    </div>
+                                </div>
+                                <div class="contact-item">
+                                    <i class="fas fa-phone"></i>
+                                    <div>
+                                        <h4>Telefone</h4>
+                                        <p>(11) 99999-9999</p>
+                                    </div>
+                                </div>
+                                <div class="contact-item">
+                                    <i class="fas fa-clock"></i>
+                                    <div>
+                                        <h4>Horário</h4>
+                                        <p>Seg - Sex: 9h às 18h</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-form-container">
+                        <form id="contactForm" class="glass-card">
+                            <div class="form-group">
+                                <label for="name">Nome</label>
+                                <input type="text" id="name" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="business">Tipo de Negócio</label>
+                                <select id="business" required>
+                                    <option value="">Selecione uma opção</option>
+                                    <option value="restaurante">Restaurante/Lanchonete</option>
+                                    <option value="loja">Comércio/Lojas</option>
+                                    <option value="clinica">Clínica/Consultório</option>
+                                    <option value="outro">Outro</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="message">Mensagem</label>
+                                <textarea id="message" rows="5" required placeholder="Descreva sua necessidade..."></textarea>
+                            </div>
+                            
+                            <button type="submit" class="btn-primary">Enviar Mensagem <i class="fas fa-paper-plane"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="glass-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <div class="logo">
+                        <div class="logo-icon">
+                            <i class="fas fa-gem"></i>
+                        </div>
+                        <div class="logo-text">
+                            <span class="logo-ruby">DevRuby</span>
+                            <span class="logo-solutions">Solutions Hub</span>
+                        </div>
+                    </div>
+                    <p class="footer-tagline">Sistemas inteligentes para negócios reais</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Áreas</h4>
+                    <ul>
+                        <li><a href="#" data-area="restaurantes">Restaurantes</a></li>
+                        <li><a href="#" data-area="comercio">Comércio</a></li>
+                        <li><a href="#" data-area="clinicas">Clínicas</a></li>
+                        <li><a href="#" data-area="salones">Salões</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Links</h4>
+                    <ul>
+                        <li><a href="#home">Início</a></li>
+                        <li><a href="#areas">Áreas</a></li>
+                        <li><a href="#sobre">Sobre</a></li>
+                        <li><a href="#contato">Contato</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-social">
+                    <h4>Conecte-se</h4>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 DevRuby Solutions Hub. Todos os direitos reservados.</p>
+                <p>Desenvolvido por <span class="highlight">DevRuby</span> - Transformando negócios com tecnologia.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal para Visualização de Área -->
+    <div class="modal" id="areaModal">
+        <div class="modal-content glass-card">
+            <div class="modal-header">
+                <h3 id="modalTitle">Detalhes da Área</h3>
+                <button class="modal-close"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-area-details">
+                    <!-- Conteúdo será preenchido via JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script src="js/animations.js"></script>
+</body>
+</html>

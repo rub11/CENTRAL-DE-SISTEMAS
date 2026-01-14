@@ -4,14 +4,1168 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DevRuby Solutions Hub | Sistemas Inteligentes para Negócios Reais</title>
-    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Exo+2:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* css/style.css */
+
+        /* Reset e configurações gerais */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --ruby-red: #e63946;
+            --ruby-dark: #b71c1c;
+            --ruby-light: #c62a2a;
+            --black: #0d1b2a;
+            --dark-gray: #1b263b;
+            --medium-gray: #415a77;
+            --light-gray: #778da9;
+            --white: #f1faee;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            --transition: all 0.3s ease;
+            --neon-glow: 0 0 10px var(--ruby-light), 0 0 20px var(--ruby-light), 0 0 30px var(--ruby-light);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Exo 2', sans-serif;
+            background-color: var(--black);
+            color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Background futurista */
+        .background-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(var(--dark-gray) 1px, transparent 1px),
+                linear-gradient(90deg, var(--dark-gray) 1px, transparent 1px);
+            background-size: 50px 50px;
+            opacity: 0.1;
+            z-index: -2;
+        }
+
+        .particles-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4 {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .highlight {
+            color: var(--ruby-light);
+            text-shadow: var(--neon-glow);
+        }
+
+        /* Glassmorphism effect */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+        }
+
+        .glass-header {
+            background: rgba(13, 27, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(231, 57, 70, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .glass-header.scrolled {
+            background: rgba(13, 27, 42, 0.95);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .glass-footer {
+            background: rgba(13, 27, 42, 0.9);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(231, 57, 70, 0.2);
+            margin-top: 100px;
+        }
+
+        /* Header/Navigation */
+        .main-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            position: relative;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--ruby-red), var(--ruby-dark));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: var(--white);
+            box-shadow: var(--neon-glow);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 10px var(--ruby-light), 0 0 20px var(--ruby-light); }
+            50% { box-shadow: 0 0 15px var(--ruby-light), 0 0 30px var(--ruby-light), 0 0 40px var(--ruby-red); }
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+        }
+
+        .logo-ruby {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            font-size: 24px;
+            color: var(--ruby-light);
+            text-shadow: var(--neon-glow);
+        }
+
+        .logo-solutions {
+            font-family: 'Exo 2', sans-serif;
+            font-size: 12px;
+            color: var(--light-gray);
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-link {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            position: relative;
+            padding: 5px 0;
+            transition: var(--transition);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--ruby-red);
+            transition: var(--transition);
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--ruby-light);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--white);
+            z-index: 1001;
+            background: none;
+            border: none;
+            width: 30px;
+            height: 30px;
+        }
+
+        /* Main Content */
+        .main-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .page-section {
+            display: none;
+            padding: 80px 0;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .page-section.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Hero Section */
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            margin-bottom: 80px;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+        }
+
+        .title-line {
+            display: block;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--light-gray);
+            margin-bottom: 30px;
+            max-width: 90%;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        /* Botões */
+        .btn-primary, .btn-secondary {
+            padding: 14px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            text-decoration: none;
+            border: none;
+            font-family: 'Exo 2', sans-serif;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--ruby-red), var(--ruby-dark));
+            color: var(--white);
+            box-shadow: 0 4px 15px rgba(231, 57, 70, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(231, 57, 70, 0.6);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--ruby-light);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(231, 57, 70, 0.1);
+            transform: translateY(-3px);
+        }
+
+        /* Hero Visual */
+        .hero-visual {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 400px;
+        }
+
+        .floating-cube {
+            width: 200px;
+            height: 200px;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: rotateCube 20s infinite linear;
+        }
+
+        @keyframes rotateCube {
+            0% { transform: rotateX(0) rotateY(0) rotateZ(0); }
+            100% { transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg); }
+        }
+
+        .cube-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 2px solid var(--ruby-light);
+            background: rgba(231, 57, 70, 0.1);
+            box-shadow: inset 0 0 30px rgba(231, 57, 70, 0.3);
+        }
+
+        .cube-face.front { transform: translateZ(100px); }
+        .cube-face.back { transform: translateZ(-100px) rotateY(180deg); }
+        .cube-face.left { transform: translateX(-100px) rotateY(-90deg); }
+        .cube-face.right { transform: translateX(100px) rotateY(90deg); }
+        .cube-face.top { transform: translateY(-100px) rotateX(90deg); }
+        .cube-face.bottom { transform: translateY(100px) rotateX(-90deg); }
+
+        .hero-glow {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(231, 57, 70, 0.3) 0%, rgba(231, 57, 70, 0) 70%);
+            border-radius: 50%;
+            z-index: -1;
+            animation: pulseGlow 4s infinite alternate;
+        }
+
+        @keyframes pulseGlow {
+            0% { transform: scale(0.8); opacity: 0.5; }
+            100% { transform: scale(1.2); opacity: 0.8; }
+        }
+
+        /* Stats */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .stat-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--ruby-light);
+            box-shadow: var(--neon-glow);
+        }
+
+        .stat-number {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--ruby-light);
+            text-shadow: var(--neon-glow);
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: var(--light-gray);
+        }
+
+        /* Section Header */
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--light-gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Áreas Grid */
+        .areas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .area-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 30px;
+            transition: var(--transition);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .area-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(231, 57, 70, 0.1), transparent);
+            transition: left 0.7s ease;
+        }
+
+        .area-card:hover::before {
+            left: 100%;
+        }
+
+        .area-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--ruby-light);
+            box-shadow: var(--neon-glow);
+        }
+
+        .area-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--ruby-red), var(--ruby-dark));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+
+        .area-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--white);
+        }
+
+        .area-description {
+            color: var(--light-gray);
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+
+        .area-projects {
+            display: flex;
+            justify-content: space-between;
+            color: var(--ruby-light);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 50px;
+            align-items: start;
+        }
+
+        .about-text h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            color: var(--light-gray);
+            font-size: 1.1rem;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .feature {
+            padding: 20px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.03);
+            transition: var(--transition);
+        }
+
+        .feature:hover {
+            background: rgba(231, 57, 70, 0.05);
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            color: var(--ruby-light);
+            margin-bottom: 15px;
+        }
+
+        .feature h4 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--white);
+        }
+
+        .feature p {
+            font-size: 0.95rem;
+            color: var(--light-gray);
+        }
+
+        .about-card {
+            padding: 30px;
+            position: sticky;
+            top: 100px;
+        }
+
+        .about-card-header {
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .about-card-header h4 {
+            font-size: 1.5rem;
+            color: var(--white);
+        }
+
+        .about-list {
+            list-style: none;
+        }
+
+        .about-list li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--light-gray);
+        }
+
+        .about-list li i {
+            color: var(--ruby-light);
+            font-size: 1.2rem;
+        }
+
+        /* Contact Section */
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+
+        .contact-card {
+            padding: 30px;
+            height: 100%;
+        }
+
+        .contact-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .contact-card h3 i {
+            color: var(--ruby-light);
+        }
+
+        .contact-card p {
+            color: var(--light-gray);
+            margin-bottom: 30px;
+        }
+
+        .contact-details {
+            margin-top: 30px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .contact-item i {
+            font-size: 1.5rem;
+            color: var(--ruby-light);
+            width: 40px;
+        }
+
+        .contact-item h4 {
+            font-size: 1.1rem;
+            color: var(--white);
+            margin-bottom: 5px;
+        }
+
+        .contact-item p {
+            margin: 0;
+            color: var(--light-gray);
+        }
+
+        /* Form */
+        .contact-form-container {
+            padding: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--white);
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            color: var(--white);
+            font-family: 'Exo 2', sans-serif;
+            font-size: 16px;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--ruby-light);
+            box-shadow: 0 0 10px rgba(231, 57, 70, 0.3);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* Footer */
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            padding: 60px 0;
+        }
+
+        .footer-tagline {
+            color: var(--light-gray);
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+
+        .footer-links h4 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: var(--light-gray);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--ruby-light);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.2rem;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .social-icons a:hover {
+            background: var(--ruby-red);
+            transform: translateY(-5px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding: 30px 0;
+            border-top: 1px solid var(--glass-border);
+            color: var(--light-gray);
+            font-size: 0.9rem;
+        }
+
+        .footer-bottom p {
+            margin-bottom: 10px;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            width: 100%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            animation: modalAppear 0.3s ease-out;
+        }
+
+        @keyframes modalAppear {
+            0% { opacity: 0; transform: translateY(-50px) scale(0.9); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 30px;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .modal-header h3 {
+            font-size: 1.8rem;
+            color: var(--white);
+        }
+
+        .modal-close {
+            background: transparent;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-close:hover {
+            color: var(--ruby-light);
+            transform: rotate(90deg);
+        }
+
+        .modal-body {
+            padding: 30px;
+        }
+
+        .modal-area-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .modal-area-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-area-icon {
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(135deg, var(--ruby-red), var(--ruby-dark));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            color: var(--white);
+            box-shadow: var(--neon-glow);
+        }
+
+        .modal-area-info h4 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+
+        .modal-area-info p {
+            color: var(--light-gray);
+            margin-bottom: 30px;
+            line-height: 1.7;
+        }
+
+        .modal-projects {
+            margin-top: 30px;
+        }
+
+        .modal-projects h5 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: var(--white);
+        }
+
+        .modal-projects ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .modal-projects li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--light-gray);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .modal-projects li:last-child {
+            border-bottom: none;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        /* Responsividade */
+        @media (max-width: 1024px) {
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .hero-visual {
+                order: -1;
+                height: 300px;
+            }
+            
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .modal-area-details {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 280px;
+                height: 100vh;
+                background: rgba(13, 27, 42, 0.95);
+                backdrop-filter: blur(10px);
+                flex-direction: column;
+                justify-content: flex-start;
+                padding-top: 100px;
+                padding-left: 30px;
+                transition: right 0.3s ease;
+                z-index: 1000;
+                border-left: 1px solid rgba(231, 57, 70, 0.2);
+                box-shadow: -5px 0 20px rgba(0, 0, 0, 0.3);
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .nav-links li {
+                margin-bottom: 20px;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .stats {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .areas-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .features {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .social-icons {
+                justify-content: center;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .btn-primary, .btn-secondary {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .about-card {
+                position: static;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .modal-buttons {
+                flex-direction: column;
+            }
+            
+            .modal-buttons .btn-primary,
+            .modal-buttons .btn-secondary {
+                width: 100%;
+            }
+            
+            .contact-form-container {
+                padding: 20px;
+            }
+            
+            .modal-body {
+                padding: 20px;
+            }
+            
+            .modal-header {
+                padding: 20px;
+            }
+        }
+
+        /* Animações extras */
+        .loaded body {
+            opacity: 1;
+        }
+
+        .tooltip {
+            position: fixed;
+            background: rgba(13, 27, 42, 0.95);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            z-index: 10000;
+            border: 1px solid rgba(231, 57, 70, 0.3);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            pointer-events: none;
+            max-width: 200px;
+            text-align: center;
+            transform: translateY(-10px);
+            opacity: 0;
+            animation: tooltipFadeIn 0.2s forwards;
+        }
+
+        @keyframes tooltipFadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 20px;
+            background: rgba(13, 27, 42, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(231, 57, 70, 0.3);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: white;
+            font-family: 'Exo 2', sans-serif;
+            z-index: 10000;
+            transform: translateX(120%);
+            transition: transform 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            max-width: 350px;
+        }
+        
+        .notification.show {
+            transform: translateX(0);
+        }
+        
+        .notification.success {
+            border-left: 4px solid #06D6A0;
+        }
+        
+        .notification.error {
+            border-left: 4px solid #EF476F;
+        }
+        
+        .notification.info {
+            border-left: 4px solid #118AB2;
+        }
+        
+        .notification i {
+            font-size: 1.2rem;
+        }
+        
+        .notification.success i {
+            color: #06D6A0;
+        }
+        
+        .notification.error i {
+            color: #EF476F;
+        }
+        
+        .notification.info i {
+            color: #118AB2;
+        }
+
+        /* Efeitos de hover para cards */
+        .card-glow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: inherit;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        /* Overlay para menu mobile */
+        .mobile-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(3px);
+            z-index: 999;
+        }
+        
+        .mobile-overlay.active {
+            display: block;
+        }
+    </style>
 </head>
 <body>
     <!-- Background futurista -->
     <div class="background-grid"></div>
     <div class="particles-container" id="particles"></div>
+    
+    <!-- Overlay para menu mobile -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
     
     <!-- Header/Navigation -->
     <header class="glass-header">
@@ -27,16 +1181,16 @@
                     </div>
                 </div>
                 
-                <ul class="nav-links">
+                <ul class="nav-links" id="navLinks">
                     <li><a href="#home" class="nav-link active" data-page="home">Início</a></li>
                     <li><a href="#areas" class="nav-link" data-page="areas">Áreas</a></li>
                     <li><a href="#sobre" class="nav-link" data-page="sobre">Sobre</a></li>
                     <li><a href="#contato" class="nav-link" data-page="contato">Contato</a></li>
                 </ul>
                 
-                <div class="mobile-menu-btn">
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
                     <i class="fas fa-bars"></i>
-                </div>
+                </button>
             </nav>
         </div>
     </header>
@@ -312,8 +1466,1070 @@
         </div>
     </div>
 
-    <!-- Scripts -->
-    <script src="js/main.js"></script>
-    <script src="js/animations.js"></script>
+    <script>
+        // js/main.js e js/animations.js combinados
+
+        // Dados das áreas de atuação
+        const areasData = [
+            {
+                id: "restaurantes",
+                title: "Restaurantes & Lanchonetes",
+                icon: "fas fa-utensils",
+                description: "Sistemas completos para gestão de restaurantes, cardápios digitais, pedidos online e controle de delivery.",
+                projects: 8,
+                color: "#FF6B6B",
+                details: "Soluções personalizadas para o setor alimentício, incluindo sistemas de comanda eletrônica, gestão de mesas, controle de estoque de insumos, integração com apps de delivery, cardápios digitais interativos e muito mais.",
+                projectIdeas: [
+                    "Sistema de Comanda Eletrônica",
+                    "Cardápio Digital Interativo",
+                    "Gestão de Delivery Integrado",
+                    "Controle de Estoque de Insumos",
+                    "Sistema de Reservas Online",
+                    "Relatórios de Desempenho",
+                    "App para Clientes",
+                    "Integração com Pagamentos"
+                ]
+            },
+            {
+                id: "comercio",
+                title: "Comércio & Lojas",
+                icon: "fas fa-store",
+                description: "Soluções para varejo físico e online, gestão de inventário, PDV e e-commerce integrado.",
+                projects: 10,
+                color: "#4ECDC4",
+                details: "Sistemas completos para comércio varejista e atacadista, com PDV avançado, controle de inventário em tempo real, gestão de múltiplas lojas, relatórios de vendas, integração com marketplaces e plataformas de e-commerce.",
+                projectIdeas: [
+                    "PDV Avançado",
+                    "Controle de Inventário",
+                    "E-commerce Personalizado",
+                    "Gestão de Multi-lojas",
+                    "Sistema de Fidelidade",
+                    "Relatórios de Vendas",
+                    "App para Vendedores",
+                    "Integração com Marketplaces"
+                ]
+            },
+            {
+                id: "estoque",
+                title: "Estoque & Logística",
+                icon: "fas fa-boxes",
+                description: "Sistemas de controle de estoque, gestão de supply chain, rastreamento e logística inteligente.",
+                projects: 6,
+                color: "#FFD166",
+                details: "Soluções para gestão de estoque e logística, com controle de entrada e saída, rastreamento de produtos, gestão de fornecedores, previsão de demanda, otimização de espaço de armazenamento e relatórios de movimentação.",
+                projectIdeas: [
+                    "Controle de Entrada/Saída",
+                    "Rastreamento de Produtos",
+                    "Gestão de Fornecedores",
+                    "Previsão de Demanda",
+                    "Otimização de Armazenamento",
+                    "Relatórios de Movimentação"
+                ]
+            },
+            {
+                id: "delivery",
+                title: "Delivery & Pedidos Online",
+                icon: "fas fa-motorcycle",
+                description: "Plataformas de delivery, apps para entregadores, gestão de pedidos e rastreamento em tempo real.",
+                projects: 7,
+                color: "#06D6A0",
+                details: "Sistemas completos para negócios de delivery, com plataforma de pedidos online, apps para clientes e entregadores, rastreamento em tempo real, gestão de zonas de entrega, sistema de avaliações e relatórios de desempenho.",
+                projectIdeas: [
+                    "Plataforma de Pedidos Online",
+                    "App para Entregadores",
+                    "Rastreamento em Tempo Real",
+                    "Gestão de Zonas de Entrega",
+                    "Sistema de Avaliações",
+                    "Relatórios de Desempenho",
+                    "Integração com Pagamentos"
+                ]
+            },
+            {
+                id: "clinicas",
+                title: "Clínicas & Consultórios",
+                icon: "fas fa-clinic-medical",
+                description: "Sistemas de gestão médica, agendamento online, prontuário eletrônico e telemedicina.",
+                projects: 9,
+                color: "#118AB2",
+                details: "Soluções especializadas para o setor de saúde, com prontuário eletrônico, agendamento online, gestão de pacientes, controle financeiro, prescrição digital, telemedicina e conformidade com legislação de proteção de dados.",
+                projectIdeas: [
+                    "Prontuário Eletrônico",
+                    "Agendamento Online",
+                    "Gestão de Pacientes",
+                    "Controle Financeiro",
+                    "Prescrição Digital",
+                    "Sistema de Telemedicina",
+                    "Conformidade LGPD",
+                    "Relatórios Clínicos"
+                ]
+            },
+            {
+                id: "salones",
+                title: "Salões & Barbearias",
+                icon: "fas fa-cut",
+                description: "Sistemas para agendamento, gestão de clientes, controle de procedimentos e vendas de produtos.",
+                projects: 5,
+                color: "#EF476F",
+                details: "Soluções para o setor de beleza e bem-estar, com agendamento online, ficha de clientes, controle de procedimentos realizados, gestão de profissionais, venda de produtos e programas de fidelidade.",
+                projectIdeas: [
+                    "Agendamento Online",
+                    "Ficha de Clientes",
+                    "Controle de Procedimentos",
+                    "Gestão de Profissionais",
+                    "Venda de Produtos",
+                    "Programa de Fidelidade"
+                ]
+            },
+            {
+                id: "escolas",
+                title: "Escolas & Cursos",
+                icon: "fas fa-graduation-cap",
+                description: "Plataformas de ensino, gestão acadêmica, controle de matrículas e ambiente virtual de aprendizagem.",
+                projects: 8,
+                color: "#7209B7",
+                details: "Sistemas educacionais completos, com gestão acadêmica, portal do aluno, controle de matrículas e mensalidades, ambiente virtual de aprendizagem, biblioteca digital, sistema de avaliações e comunicação com pais.",
+                projectIdeas: [
+                    "Portal do Aluno",
+                    "Gestão Acadêmica",
+                    "Controle de Matrículas",
+                    "Ambiente Virtual de Aprendizagem",
+                    "Biblioteca Digital",
+                    "Sistema de Avaliações",
+                    "Comunicação com Pais",
+                    "Controle Financeiro"
+                ]
+            },
+            {
+                id: "empresas",
+                title: "Empresas & Escritórios",
+                icon: "fas fa-building",
+                description: "Sistemas de gestão empresarial, CRM, controle de projetos, ferramentas de produtividade.",
+                projects: 12,
+                color: "#3A86FF",
+                details: "Soluções corporativas abrangentes, incluindo CRM avançado, ERP personalizado, gestão de projetos, controle de tarefas, sistema de pontos, ferramentas de comunicação interna e relatórios gerenciais.",
+                projectIdeas: [
+                    "CRM Avançado",
+                    "ERP Personalizado",
+                    "Gestão de Projetos",
+                    "Controle de Tarefas",
+                    "Sistema de Pontos",
+                    "Ferramentas de Comunicação",
+                    "Relatórios Gerenciais",
+                    "Gestão de Documentos"
+                ]
+            },
+            {
+                id: "prestadores",
+                title: "Prestadores de Serviço",
+                icon: "fas fa-tools",
+                description: "Sistemas para agendamento de serviços, orçamentos, controle de equipes e faturamento.",
+                projects: 6,
+                color: "#FB5607",
+                details: "Soluções para prestadores de serviços diversos, com agendamento online, emissão de orçamentos, controle de equipes em campo, sistema de visitas técnicas, faturamento automatizado e avaliação de serviços.",
+                projectIdeas: [
+                    "Agendamento Online",
+                    "Emissão de Orçamentos",
+                    "Controle de Equipes",
+                    "Sistema de Visitas Técnicas",
+                    "Faturamento Automatizado",
+                    "Avaliação de Serviços"
+                ]
+            },
+            {
+                id: "construcao",
+                title: "Construção & Obras",
+                icon: "fas fa-hard-hat",
+                description: "Gestão de canteiros de obras, controle de materiais, planejamento de projetos e equipes.",
+                projects: 7,
+                color: "#FF9E00",
+                details: "Sistemas especializados para o setor da construção civil, com gestão de canteiros de obras, controle de materiais e equipamentos, planejamento de etapas, gestão de fornecedores, controle de segurança e relatórios de progresso.",
+                projectIdeas: [
+                    "Gestão de Canteiros",
+                    "Controle de Materiais",
+                    "Planejamento de Etapas",
+                    "Gestão de Fornecedores",
+                    "Controle de Segurança",
+                    "Relatórios de Progresso",
+                    "Controle Financeiro"
+                ]
+            },
+            {
+                id: "oficinas",
+                title: "Oficinas & Auto Center",
+                icon: "fas fa-car",
+                description: "Sistemas para gestão de oficinas, ordens de serviço, controle de peças e agendamento.",
+                projects: 5,
+                color: "#8338EC",
+                details: "Soluções para oficinas mecânicas e auto centers, com emissão de ordens de serviço, controle de estoque de peças, histórico de veículos, agendamento de serviços, integração com fornecedores e relatórios de produtividade.",
+                projectIdeas: [
+                    "Ordens de Serviço",
+                    "Controle de Peças",
+                    "Histórico de Veículos",
+                    "Agendamento de Serviços",
+                    "Integração com Fornecedores",
+                    "Relatórios de Produtividade"
+                ]
+            },
+            {
+                id: "hoteis",
+                title: "Hotéis & Pousadas",
+                icon: "fas fa-hotel",
+                description: "Sistemas de reservas, gestão de hóspedes, controle de apartamentos e serviços adicionais.",
+                projects: 6,
+                color: "#3A86FF",
+                details: "Soluções para o setor hoteleiro, com sistema de reservas online, check-in/out digital, gestão de apartamentos, controle de serviços adicionais, integração com canais de venda e relatórios de ocupação.",
+                projectIdeas: [
+                    "Reservas Online",
+                    "Check-in/out Digital",
+                    "Gestão de Apartamentos",
+                    "Controle de Serviços",
+                    "Integração com Canais",
+                    "Relatórios de Ocupação"
+                ]
+            },
+            {
+                id: "eventos",
+                title: "Eventos & Festas",
+                icon: "fas fa-glass-cheers",
+                description: "Sistemas para gestão de eventos, vendas de ingressos, controle de convidados e logística.",
+                projects: 5,
+                color: "#FF006E",
+                details: "Soluções para o setor de eventos, com gestão completa de eventos, venda de ingressos online, controle de convidados, logística de montagem, sistema de credenciamento e relatórios pós-evento.",
+                projectIdeas: [
+                    "Gestão de Eventos",
+                    "Venda de Ingressos Online",
+                    "Controle de Convidados",
+                    "Logística de Montagem",
+                    "Sistema de Credenciamento",
+                    "Relatórios Pós-evento"
+                ]
+            },
+            {
+                id: "quiosques",
+                title: "Quiosques & Trailers",
+                icon: "fas fa-utensil-spoon",
+                description: "Sistemas leves para pequenos negócios, controle de vendas, estoque simplificado e pagamentos.",
+                projects: 4,
+                color: "#FFBE0B",
+                details: "Soluções simplificadas para pequenos empreendimentos como quiosques e trailers de comida, com controle de vendas, estoque básico, gestão de fornecedores, relatórios de lucratividade e integração com maquininhas de cartão.",
+                projectIdeas: [
+                    "Controle de Vendas",
+                    "Estoque Básico",
+                    "Gestão de Fornecedores",
+                    "Relatórios de Lucratividade",
+                    "Integração com Maquininhas"
+                ]
+            },
+            {
+                id: "infoprodutos",
+                title: "Negócios Digitais & Infoprodutos",
+                icon: "fas fa-laptop-code",
+                description: "Plataformas para cursos online, áreas de membros, assinaturas e automação de marketing.",
+                projects: 9,
+                color: "#00BBF9",
+                details: "Soluções para empreendedores digitais, com plataformas de cursos online, áreas de membros, sistema de assinaturas, automação de marketing, funil de vendas, integração com gateways de pagamento e análises de conversão.",
+                projectIdeas: [
+                    "Plataforma de Cursos Online",
+                    "Área de Membros",
+                    "Sistema de Assinaturas",
+                    "Automação de Marketing",
+                    "Funil de Vendas",
+                    "Integração com Pagamentos",
+                    "Análises de Conversão",
+                    "Emissão de Certificados"
+                ]
+            }
+        ];
+
+        // Inicialização do site
+        document.addEventListener('DOMContentLoaded', function() {
+            // Carregar áreas na grid
+            loadAreasGrid();
+            
+            // Configurar navegação
+            setupNavigation();
+            
+            // Configurar formulário de contato
+            setupContactForm();
+            
+            // Configurar eventos dos cards
+            setupAreaCards();
+            
+            // Configurar footer links
+            setupFooterLinks();
+            
+            // Inicializar partículas
+            initParticles();
+            
+            // Configurar menu mobile
+            setupMobileMenu();
+            
+            // Inicializar animações
+            initAnimations();
+            
+            // Inicializar efeitos de rolagem no header
+            initScrollEffects();
+        });
+
+        // Carregar áreas na grid
+        function loadAreasGrid() {
+            const areasGrid = document.getElementById('areasGrid');
+            
+            if (!areasGrid) return;
+            
+            areasGrid.innerHTML = '';
+            
+            areasData.forEach(area => {
+                const areaCard = document.createElement('a');
+                areaCard.className = 'area-card';
+                areaCard.setAttribute('data-area', area.id);
+                areaCard.href = '#';
+                
+                areaCard.innerHTML = `
+                    <div class="area-icon" style="background: linear-gradient(135deg, ${area.color}, ${darkenColor(area.color, 20)});">
+                        <i class="${area.icon}"></i>
+                    </div>
+                    <h3 class="area-title">${area.title}</h3>
+                    <p class="area-description">${area.description}</p>
+                    <div class="area-projects">
+                        <span>${area.projects} projetos</span>
+                        <span><i class="fas fa-arrow-right"></i></span>
+                    </div>
+                `;
+                
+                areasGrid.appendChild(areaCard);
+            });
+        }
+
+        // Configurar navegação
+        function setupNavigation() {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('.page-section');
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetPage = this.getAttribute('data-page');
+                    
+                    // Atualizar links ativos
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Mostrar seção correspondente
+                    sections.forEach(section => {
+                        section.classList.remove('active');
+                        
+                        if (section.id === targetPage) {
+                            setTimeout(() => {
+                                section.classList.add('active');
+                                // Scroll para a seção
+                                section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                            }, 50);
+                        }
+                    });
+                    
+                    // Fechar menu mobile se aberto
+                    closeMobileMenu();
+                });
+            });
+        }
+
+        // Configurar formulário de contato
+        function setupContactForm() {
+            const contactForm = document.getElementById('contactForm');
+            
+            if (!contactForm) return;
+            
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Validar formulário
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const business = document.getElementById('business').value;
+                const message = document.getElementById('message').value;
+                
+                if (!name || !email || !business || !message) {
+                    showNotification('Por favor, preencha todos os campos.', 'error');
+                    return;
+                }
+                
+                // Simular envio
+                showNotification('Mensagem enviada com sucesso! Entraremos em contato em breve.', 'success');
+                
+                // Resetar formulário
+                contactForm.reset();
+            });
+        }
+
+        // Configurar eventos dos cards
+        function setupAreaCards() {
+            document.addEventListener('click', function(e) {
+                // Verificar se clique foi em um card de área
+                const areaCard = e.target.closest('.area-card');
+                if (areaCard) {
+                    e.preventDefault();
+                    const areaId = areaCard.getAttribute('data-area');
+                    const areaData = areasData.find(area => area.id === areaId);
+                    
+                    if (areaData) {
+                        openAreaModal(areaData);
+                    }
+                }
+                
+                // Verificar se clique foi em um link do footer para área
+                const areaLink = e.target.closest('[data-area]');
+                if (areaLink && areaLink.hasAttribute('data-area') && areaLink.tagName === 'A') {
+                    e.preventDefault();
+                    const areaId = areaLink.getAttribute('data-area');
+                    const areaData = areasData.find(area => area.id === areaId);
+                    
+                    if (areaData) {
+                        openAreaModal(areaData);
+                    }
+                }
+            });
+        }
+
+        // Abrir modal da área
+        function openAreaModal(areaData) {
+            const modal = document.getElementById('areaModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalBody = document.querySelector('.modal-area-details');
+            
+            if (!modal || !modalTitle || !modalBody) return;
+            
+            // Atualizar conteúdo do modal
+            modalTitle.textContent = areaData.title;
+            
+            modalBody.innerHTML = `
+                <div class="modal-area-visual">
+                    <div class="modal-area-icon" style="background: linear-gradient(135deg, ${areaData.color}, ${darkenColor(areaData.color, 20)});">
+                        <i class="${areaData.icon}"></i>
+                    </div>
+                </div>
+                <div class="modal-area-info">
+                    <h4>${areaData.title}</h4>
+                    <p>${areaData.details}</p>
+                    
+                    <div class="modal-projects">
+                        <h5>Ideias de Projetos Disponíveis:</h5>
+                        <ul>
+                            ${areaData.projectIdeas.map(idea => `<li>${idea} <span class="highlight">→</span></li>`).join('')}
+                        </ul>
+                    </div>
+                    
+                    <div class="modal-buttons">
+                        <button class="btn-primary" id="viewDemo">Ver Demonstração <i class="fas fa-external-link-alt"></i></button>
+                        <button class="btn-secondary" id="requestQuote">Quero um Igual <i class="fas fa-gem"></i></button>
+                    </div>
+                </div>
+            `;
+            
+            // Mostrar modal
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            
+            // Configurar botão de fechar
+            const closeBtn = modal.querySelector('.modal-close');
+            closeBtn.addEventListener('click', () => {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+            
+            // Fechar modal ao clicar fora
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+            
+            // Configurar botão "Ver Demonstração"
+            const viewDemoBtn = document.getElementById('viewDemo');
+            if (viewDemoBtn) {
+                viewDemoBtn.addEventListener('click', () => {
+                    showNotification('Em breve disponível!', 'info');
+                });
+            }
+            
+            // Configurar botão "Quero um igual"
+            const requestQuoteBtn = document.getElementById('requestQuote');
+            if (requestQuoteBtn) {
+                requestQuoteBtn.addEventListener('click', () => {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                    
+                    // Navegar para seção de contato
+                    const contactLink = document.querySelector('[data-page="contato"]');
+                    if (contactLink) {
+                        contactLink.click();
+                        
+                        // Preencher campo de tipo de negócio
+                        setTimeout(() => {
+                            const businessSelect = document.getElementById('business');
+                            if (businessSelect) {
+                                // Encontrar a opção correspondente
+                                let optionValue = 'outro';
+                                if (areaData.id.includes('restaurante')) optionValue = 'restaurante';
+                                else if (areaData.id.includes('comercio') || areaData.id.includes('loja')) optionValue = 'loja';
+                                else if (areaData.id.includes('clinica')) optionValue = 'clinica';
+                                
+                                businessSelect.value = optionValue;
+                                
+                                // Adicionar informação ao campo de mensagem
+                                const messageField = document.getElementById('message');
+                                if (messageField) {
+                                    messageField.value = `Estou interessado em um sistema para ${areaData.title.toLowerCase()}.\n\n`;
+                                    messageField.focus();
+                                }
+                            }
+                        }, 500);
+                    }
+                });
+            }
+        }
+
+        // Configurar links do footer
+        function setupFooterLinks() {
+            const footerAreaLinks = document.querySelectorAll('.footer-links a[data-area]');
+            
+            footerAreaLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Navegar para seção de áreas primeiro
+                    const areasLink = document.querySelector('[data-page="areas"]');
+                    if (areasLink) {
+                        areasLink.click();
+                        
+                        // Abrir modal da área específica após um breve delay
+                        setTimeout(() => {
+                            const areaId = this.getAttribute('data-area');
+                            const areaData = areasData.find(area => area.id === areaId);
+                            
+                            if (areaData) {
+                                openAreaModal(areaData);
+                            }
+                        }, 500);
+                    }
+                });
+            });
+        }
+
+        // Configurar menu mobile
+        function setupMobileMenu() {
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const navLinks = document.getElementById('navLinks');
+            const mobileOverlay = document.getElementById('mobileOverlay');
+            
+            if (!mobileMenuBtn || !navLinks) return;
+            
+            mobileMenuBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                navLinks.classList.toggle('active');
+                mobileOverlay.classList.toggle('active');
+                
+                if (navLinks.classList.contains('active')) {
+                    this.innerHTML = '<i class="fas fa-times"></i>';
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    this.innerHTML = '<i class="fas fa-bars"></i>';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+            
+            // Fechar menu ao clicar no overlay
+            mobileOverlay.addEventListener('click', closeMobileMenu);
+            
+            // Fechar menu ao clicar em um link
+            navLinks.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    closeMobileMenu();
+                }
+            });
+            
+            // Fechar menu ao pressionar ESC
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    closeMobileMenu();
+                }
+            });
+        }
+        
+        function closeMobileMenu() {
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const navLinks = document.getElementById('navLinks');
+            const mobileOverlay = document.getElementById('mobileOverlay');
+            
+            navLinks.classList.remove('active');
+            mobileOverlay.classList.remove('active');
+            
+            if (mobileMenuBtn) {
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            }
+            
+            document.body.style.overflow = 'auto';
+        }
+
+        // Inicializar partículas
+        function initParticles() {
+            const particlesContainer = document.getElementById('particles');
+            
+            if (!particlesContainer) return;
+            
+            // Criar partículas
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                // Posição aleatória
+                const posX = Math.random() * 100;
+                const posY = Math.random() * 100;
+                
+                // Tamanho aleatório
+                const size = Math.random() * 4 + 1;
+                
+                // Duração da animação aleatória
+                const duration = Math.random() * 20 + 10;
+                
+                // Atraso aleatório
+                const delay = Math.random() * 5;
+                
+                // Aplicar estilos
+                particle.style.cssText = `
+                    position: absolute;
+                    left: ${posX}%;
+                    top: ${posY}%;
+                    width: ${size}px;
+                    height: ${size}px;
+                    background-color: rgba(231, 57, 70, ${Math.random() * 0.5 + 0.1});
+                    border-radius: 50%;
+                    animation: floatParticle ${duration}s infinite linear ${delay}s;
+                    z-index: -1;
+                `;
+                
+                particlesContainer.appendChild(particle);
+            }
+            
+            // Adicionar keyframes para animação de partículas
+            if (!document.querySelector('#floatParticleKeyframes')) {
+                const styleSheet = document.createElement('style');
+                styleSheet.id = 'floatParticleKeyframes';
+                styleSheet.textContent = `
+                    @keyframes floatParticle {
+                        0% {
+                            transform: translateY(0) translateX(0);
+                            opacity: 0;
+                        }
+                        10% {
+                            opacity: 1;
+                        }
+                        90% {
+                            opacity: 1;
+                        }
+                        100% {
+                            transform: translateY(-100vh) translateX(${Math.random() * 100 - 50}px);
+                            opacity: 0;
+                        }
+                    }
+                `;
+                
+                document.head.appendChild(styleSheet);
+            }
+        }
+
+        // Mostrar notificação
+        function showNotification(message, type = 'info') {
+            // Remover notificação anterior se existir
+            const existingNotification = document.querySelector('.notification');
+            if (existingNotification) {
+                existingNotification.remove();
+            }
+            
+            // Criar notificação
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            
+            // Ícone baseado no tipo
+            let icon = 'fas fa-info-circle';
+            if (type === 'success') icon = 'fas fa-check-circle';
+            if (type === 'error') icon = 'fas fa-exclamation-circle';
+            
+            notification.innerHTML = `
+                <i class="${icon}"></i>
+                <span>${message}</span>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Mostrar notificação
+            setTimeout(() => {
+                notification.classList.add('show');
+            }, 10);
+            
+            // Remover notificação após 5 segundos
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => {
+                    notification.remove();
+                }, 300);
+            }, 5000);
+        }
+
+        // Função auxiliar para escurecer cor
+        function darkenColor(color, percent) {
+            // Verificar se a cor é um hex válido
+            if (!color || color.length !== 7) return color;
+            
+            try {
+                // Converter hex para RGB
+                let r = parseInt(color.substring(1, 3), 16);
+                let g = parseInt(color.substring(3, 5), 16);
+                let b = parseInt(color.substring(5, 7), 16);
+                
+                // Escurecer
+                r = Math.floor(r * (100 - percent) / 100);
+                g = Math.floor(g * (100 - percent) / 100);
+                b = Math.floor(b * (100 - percent) / 100);
+                
+                // Garantir que os valores estejam dentro do range
+                r = Math.max(0, Math.min(255, r));
+                g = Math.max(0, Math.min(255, g));
+                b = Math.max(0, Math.min(255, b));
+                
+                // Converter de volta para hex
+                return `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`;
+            } catch (e) {
+                return color;
+            }
+        }
+
+        // Inicializar animações
+        function initAnimations() {
+            // Animação de entrada para cards
+            animateCardsOnScroll();
+            
+            // Efeito de tilt nos cards
+            initTiltEffect();
+            
+            // Animações de hover para botões
+            initButtonHoverEffects();
+            
+            // Animações para elementos do hero
+            initHeroAnimations();
+            
+            // Configurar observers para animações de entrada
+            initIntersectionObserver();
+            
+            // Efeito de digitação
+            initTypewriterEffect();
+            
+            // Efeito de ripple
+            initRippleEffect();
+        }
+
+        // Efeito de scroll no header
+        function initScrollEffects() {
+            window.addEventListener('scroll', function() {
+                const header = document.querySelector('.glass-header');
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+                
+                // Efeito de parallax para o background grid
+                const grid = document.querySelector('.background-grid');
+                const scrolled = window.pageYOffset;
+                const rate = scrolled * -0.5;
+                
+                if (grid) {
+                    grid.style.transform = `translateY(${rate}px)`;
+                }
+            });
+        }
+
+        // js/animations.js
+        function animateCardsOnScroll() {
+            const cards = document.querySelectorAll('.area-card, .stat-card, .feature');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+            
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(card);
+            });
+        }
+
+        function initTiltEffect() {
+            const cards = document.querySelectorAll('.area-card, .glass-card');
+            
+            cards.forEach(card => {
+                card.addEventListener('mousemove', function(e) {
+                    const cardRect = this.getBoundingClientRect();
+                    const cardWidth = cardRect.width;
+                    const cardHeight = cardRect.height;
+                    const centerX = cardRect.left + cardWidth / 2;
+                    const centerY = cardRect.top + cardHeight / 2;
+                    const mouseX = e.clientX - centerX;
+                    const mouseY = e.clientY - centerY;
+                    
+                    // Calcular rotação baseada na posição do mouse
+                    const rotateY = (mouseX / cardWidth) * 10;
+                    const rotateX = -(mouseY / cardHeight) * 10;
+                    
+                    // Aplicar transformação
+                    this.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.03, 1.03, 1.03)`;
+                    
+                    // Efeito de brilho
+                    const glowX = (mouseX / cardWidth) * 100;
+                    const glowY = (mouseY / cardHeight) * 100;
+                    
+                    if (!this.querySelector('.card-glow')) {
+                        const glow = document.createElement('div');
+                        glow.className = 'card-glow';
+                        glow.style.cssText = `
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            width: 100%;
+                            height: 100%;
+                            border-radius: inherit;
+                            pointer-events: none;
+                            z-index: -1;
+                            opacity: 0;
+                            background: radial-gradient(circle at ${glowX}% ${glowY}%, rgba(231, 57, 70, 0.2), transparent 70%);
+                        `;
+                        this.appendChild(glow);
+                    } else {
+                        const glow = this.querySelector('.card-glow');
+                        glow.style.background = `radial-gradient(circle at ${glowX}% ${glowY}%, rgba(231, 57, 70, 0.2), transparent 70%)`;
+                        glow.style.opacity = '1';
+                    }
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    // Resetar transformação
+                    this.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+                    
+                    // Remover brilho
+                    const glow = this.querySelector('.card-glow');
+                    if (glow) {
+                        glow.style.opacity = '0';
+                        setTimeout(() => {
+                            if (glow.parentNode === this) {
+                                this.removeChild(glow);
+                            }
+                        }, 300);
+                    }
+                });
+            });
+        }
+
+        function initButtonHoverEffects() {
+            const buttons = document.querySelectorAll('.btn-primary, .btn-secondary');
+            
+            buttons.forEach(button => {
+                button.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-3px)';
+                });
+                
+                button.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+        }
+
+        function initHeroAnimations() {
+            const heroTitle = document.querySelector('.hero-title');
+            const heroSubtitle = document.querySelector('.hero-subtitle');
+            const heroButtons = document.querySelector('.hero-buttons');
+            
+            if (heroTitle) {
+                heroTitle.style.opacity = '0';
+                heroTitle.style.transform = 'translateY(30px)';
+                
+                setTimeout(() => {
+                    heroTitle.style.transition = 'opacity 1s ease, transform 1s ease';
+                    heroTitle.style.opacity = '1';
+                    heroTitle.style.transform = 'translateY(0)';
+                }, 300);
+            }
+            
+            if (heroSubtitle) {
+                heroSubtitle.style.opacity = '0';
+                heroSubtitle.style.transform = 'translateY(30px)';
+                
+                setTimeout(() => {
+                    heroSubtitle.style.transition = 'opacity 1s ease 0.3s, transform 1s ease 0.3s';
+                    heroSubtitle.style.opacity = '1';
+                    heroSubtitle.style.transform = 'translateY(0)';
+                }, 600);
+            }
+            
+            if (heroButtons) {
+                heroButtons.style.opacity = '0';
+                
+                setTimeout(() => {
+                    heroButtons.style.transition = 'opacity 1s ease 0.6s';
+                    heroButtons.style.opacity = '1';
+                }, 900);
+            }
+        }
+
+        function initIntersectionObserver() {
+            const sections = document.querySelectorAll('.page-section');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Adicionar classe de animação para elementos dentro da seção
+                        const animatedElements = entry.target.querySelectorAll('.animate-on-scroll');
+                        animatedElements.forEach((el, index) => {
+                            setTimeout(() => {
+                                el.classList.add('animated');
+                            }, index * 100);
+                        });
+                    }
+                });
+            }, {
+                threshold: 0.2
+            });
+            
+            sections.forEach(section => {
+                observer.observe(section);
+                
+                // Adicionar classe para elementos que devem ser animados
+                const elementsToAnimate = section.querySelectorAll('.section-title, .section-subtitle, .feature, .contact-item');
+                elementsToAnimate.forEach(el => {
+                    el.classList.add('animate-on-scroll');
+                    el.style.opacity = '0';
+                    el.style.transform = 'translateY(20px)';
+                    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                });
+            });
+            
+            // Adicionar classe CSS para animação
+            if (!document.querySelector('#animationStyles')) {
+                const animationStyles = document.createElement('style');
+                animationStyles.id = 'animationStyles';
+                animationStyles.textContent = `
+                    .animate-on-scroll.animated {
+                        opacity: 1 !important;
+                        transform: translateY(0) !important;
+                    }
+                `;
+                document.head.appendChild(animationStyles);
+            }
+        }
+
+        function initTypewriterEffect() {
+            const typewriterElements = document.querySelectorAll('.typewriter');
+            
+            typewriterElements.forEach(element => {
+                const text = element.textContent;
+                element.textContent = '';
+                
+                let i = 0;
+                const typeWriter = () => {
+                    if (i < text.length) {
+                        element.textContent += text.charAt(i);
+                        i++;
+                        setTimeout(typeWriter, 50);
+                    }
+                };
+                
+                // Iniciar animação quando o elemento estiver visível
+                const observer = new IntersectionObserver((entries) => {
+                    if (entries[0].isIntersecting) {
+                        typeWriter();
+                        observer.unobserve(element);
+                    }
+                });
+                
+                observer.observe(element);
+            });
+        }
+
+        function initRippleEffect() {
+            const buttons = document.querySelectorAll('.btn-primary, .btn-secondary');
+            
+            buttons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    // Criar elemento de onda
+                    const ripple = document.createElement('span');
+                    const rect = this.getBoundingClientRect();
+                    const size = Math.max(rect.width, rect.height);
+                    const x = e.clientX - rect.left - size / 2;
+                    const y = e.clientY - rect.top - size / 2;
+                    
+                    ripple.style.cssText = `
+                        position: absolute;
+                        border-radius: 50%;
+                        background: rgba(255, 255, 255, 0.7);
+                        transform: scale(0);
+                        animation: ripple-animation 0.6s linear;
+                        width: ${size}px;
+                        height: ${size}px;
+                        top: ${y}px;
+                        left: ${x}px;
+                        pointer-events: none;
+                    `;
+                    
+                    this.style.position = 'relative';
+                    this.style.overflow = 'hidden';
+                    this.appendChild(ripple);
+                    
+                    // Remover elemento após animação
+                    setTimeout(() => {
+                        ripple.remove();
+                    }, 600);
+                });
+            });
+            
+            // Adicionar keyframes para efeito de ripple
+            if (!document.querySelector('#rippleKeyframes')) {
+                const styleSheet = document.createElement('style');
+                styleSheet.id = 'rippleKeyframes';
+                styleSheet.textContent = `
+                    @keyframes ripple-animation {
+                        to {
+                            transform: scale(4);
+                            opacity: 0;
+                        }
+                    }
+                `;
+                document.head.appendChild(styleSheet);
+            }
+        }
+
+        // Adicionar classe loaded para transições suaves após carregamento
+        window.addEventListener('load', function() {
+            document.body.classList.add('loaded');
+            
+            // Remover partículas em dispositivos móveis para melhor performance
+            if (window.innerWidth < 768) {
+                const particles = document.querySelectorAll('.particle');
+                particles.forEach(particle => {
+                    particle.style.display = 'none';
+                });
+            }
+        });
+    </script>
 </body>
 </html>

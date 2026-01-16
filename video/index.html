@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevRuby Video Hub - Biblioteca de Demonstrações</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --ruby: #e0115f;
+            --ruby-dark: #b30e4c;
+            --ruby-light: #ff2b7c;
+            --dark: #0a0a0a;
+            --darker: #050505;
+            --gray: #1a1a1a;
+            --light: #f5f5f5;
+            --transition: all 0.3s ease;
+            --glow: 0 0 15px rgba(224, 17, 95, 0.7);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--darker);
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(to right, var(--dark), var(--gray));
+            padding: 2rem 1rem;
+            text-align: center;
+            border-bottom: 3px solid var(--ruby);
+            box-shadow: var(--glow);
+            position: relative;
+            z-index: 10;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 1rem;
+        }
+        
+        .logo i {
+            color: var(--ruby);
+            font-size: 2.5rem;
+            filter: drop-shadow(0 0 10px rgba(224, 17, 95, 0.8));
+        }
+        
+        .logo h1 {
+            font-size: 2.8rem;
+            background: linear-gradient(to right, var(--ruby), var(--ruby-light));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 20px rgba(224, 17, 95, 0.3);
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            color: #ccc;
+            max-width: 600px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+        
+        /* Container principal */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+        
+        /* Categorias */
+        .category {
+            margin-bottom: 3rem;
+        }
+        
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--ruby);
+        }
+        
+        .category-icon {
+            background-color: var(--ruby);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: var(--glow);
+        }
+        
+        .category-title {
+            font-size: 1.8rem;
+            color: var(--light);
+        }
+        
+        /* Grid de vídeos */
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .video-card {
+            background: linear-gradient(145deg, var(--gray), var(--dark));
+            border-radius: 12px;
+            overflow: hidden;
+            transition: var(--transition);
+            border: 1px solid #333;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .video-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--ruby);
+            box-shadow: var(--glow);
+        }
+        
+        .video-title {
+            padding: 1.2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            background-color: rgba(0, 0, 0, 0.3);
+            border-bottom: 1px solid #333;
+            flex-grow: 0;
+        }
+        
+        .video-container {
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            overflow: hidden;
+        }
+        
+        video {
+            width: 100%;
+            height: auto;
+            max-height: 200px;
+            display: block;
+            background-color: #000;
+            transition: var(--transition);
+        }
+        
+        .video-card:hover video {
+            transform: scale(1.03);
+        }
+        
+        /* Player em tela cheia */
+        .fullscreen-player {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            z-index: 1000;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+        
+        .fullscreen-player.active {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .fullscreen-video {
+            width: 90%;
+            max-width: 1000px;
+            height: auto;
+            max-height: 80vh;
+            border-radius: 8px;
+            box-shadow: 0 0 40px rgba(224, 17, 95, 0.5);
+        }
+        
+        .close-player {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            background-color: var(--ruby);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            box-shadow: 0 0 15px rgba(224, 17, 95, 0.7);
+        }
+        
+        .close-player:hover {
+            background-color: var(--ruby-dark);
+            transform: rotate(90deg);
+        }
+        
+        .video-info {
+            margin-top: 1.5rem;
+            text-align: center;
+            max-width: 800px;
+        }
+        
+        .video-info h3 {
+            font-size: 1.8rem;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Rodapé */
+        footer {
+            background-color: var(--dark);
+            padding: 2rem 1rem;
+            text-align: center;
+            border-top: 1px solid #333;
+            margin-top: 3rem;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .devruby-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--ruby);
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .copyright {
+            color: #aaa;
+            font-size: 1rem;
+        }
+        
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .logo h1 {
+                font-size: 2rem;
+            }
+            
+            .videos-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+                gap: 1.5rem;
+            }
+            
+            .category-title {
+                font-size: 1.5rem;
+            }
+            
+            .fullscreen-video {
+                width: 95%;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .logo h1 {
+                font-size: 1.8rem;
+            }
+            
+            .tagline {
+                font-size: 1rem;
+            }
+            
+            .videos-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .category-header {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+        }
+        
+        /* Efeitos de brilho */
+        .glow {
+            position: fixed;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(224, 17, 95, 0.15) 0%, rgba(224, 17, 95, 0) 70%);
+            z-index: 1;
+            pointer-events: none;
+        }
+        
+        .glow-1 {
+            top: 10%;
+            left: 5%;
+        }
+        
+        .glow-2 {
+            bottom: 10%;
+            right: 5%;
+        }
+    </style>
+</head>
+<body>
+    <!-- Efeitos de brilho -->
+    <div class="glow glow-1"></div>
+    <div class="glow glow-2"></div>
+    
+    <!-- Cabeçalho -->
+    <header>
+        <div class="logo">
+            <i class="fas fa-gem"></i>
+            <h1>DevRuby Video Hub</h1>
+        </div>
+        <p class="tagline">Biblioteca de Demonstrações de Sistemas</p>
+    </header>
+    
+    <!-- Container principal -->
+    <main class="container">
+        <!-- Categorias serão inseridas aqui via JavaScript -->
+        <div id="categories-container"></div>
+    </main>
+    
+    <!-- Player em tela cheia -->
+    <div class="fullscreen-player" id="fullscreenPlayer">
+        <button class="close-player" id="closePlayer">
+            <i class="fas fa-times"></i>
+        </button>
+        <video class="fullscreen-video" controls id="fullscreenVideo"></video>
+        <div class="video-info">
+            <h3 id="fullscreenTitle"></h3>
+        </div>
+    </div>
+    
+    <!-- Rodapé -->
+    <footer>
+        <div class="footer-content">
+            <div class="devruby-logo">
+                <i class="fas fa-code"></i>
+                <span>DevRuby</span>
+            </div>
+            <p class="copyright">Desenvolvido por DevRuby</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Dados dos vídeos por categoria
+        const videoData = [
+            {
+                category: "🍔 Restaurantes & Lanchonetes",
+                icon: "fa-utensils",
+                videos: [
+                    { title: "Sistema de Comanda Eletrônica", file: "videos/comanda-eletronica.mp4" },
+                    { title: "Cardápio Digital Interativo", file: "videos/cardapio-digital.mp4" },
+                    { title: "Gestão de Delivery Integrado", file: "videos/gestao-delivery.mp4" },
+                    { title: "Controle de Estoque de Insumos", file: "videos/controle-estoque.mp4" },
+                    { title: "Sistema de Reservas Online", file: "videos/reservas-online.mp4" },
+                    { title: "Relatórios de Desempenho", file: "videos/relatorios-desempenho.mp4" },
+                    { title: "App para Clientes", file: "videos/app-clientes.mp4" },
+                    { title: "Integração com Pagamentos", file: "videos/integracao-pagamentos.mp4" }
+                ]
+            },
+            {
+                category: "🛒 Comércio & Lojas",
+                icon: "fa-store",
+                videos: [
+                    { title: "PDV Avançado", file: "videos/pdv-avancado.mp4" },
+                    { title: "Controle de Inventário", file: "videos/controle-inventario.mp4" },
+                    { title: "E-commerce Personalizado", file: "videos/ecommerce-personalizado.mp4" },
+                    { title: "Gestão de Multi-lojas", file: "videos/gestao-multilojas.mp4" },
+                    { title: "Sistema de Fidelidade", file: "videos/sistema-fidelidade.mp4" },
+                    { title: "Relatórios de Vendas", file: "videos/relatorios-vendas.mp4" },
+                    { title: "App para Vendedores", file: "videos/app-vendedores.mp4" },
+                    { title: "Integração com Marketplaces", file: "videos/integracao-marketplaces.mp4" },
+                    { title: "Controle de Entrada/Saída", file: "videos/controle-entrada-saida.mp4" },
+                    { title: "Rastreamento de Produtos", file: "videos/rastreamento-produtos.mp4" }
+                ]
+            },
+            {
+                category: "📦 Estoque & Logística",
+                icon: "fa-boxes",
+                videos: [
+                    { title: "Controle de Entrada/Saída", file: "videos/controle-entrada-saida-logistica.mp4" },
+                    { title: "Rastreamento de Produtos", file: "videos/rastreamento-produtos-logistica.mp4" },
+                    { title: "Gestão de Fornecedores", file: "videos/gestao-fornecedores.mp4" },
+                    { title: "Previsão de Demanda", file: "videos/previsao-demanda.mp4" },
+                    { title: "Otimização de Armazenamento", file: "videos/otimizacao-armazenamento.mp4" },
+                    { title: "Relatórios de Movimentação", file: "videos/relatorios-movimentacao.mp4" }
+                ]
+            },
+            {
+                category: "🚚 Delivery & Pedidos Online",
+                icon: "fa-motorcycle",
+                videos: [
+                    { title: "Plataforma de Pedidos Online", file: "videos/plataforma-pedidos.mp4" },
+                    { title: "App para Entregadores", file: "videos/app-entregadores.mp4" },
+                    { title: "Rastreamento em Tempo Real", file: "videos/rastreamento-tempo-real.mp4" },
+                    { title: "Gestão de Zonas de Entrega", file: "videos/gestao-zonas-entrega.mp4" },
+                    { title: "Sistema de Avaliações", file: "videos/sistema-avaliacoes.mp4" },
+                    { title: "Relatórios de Desempenho", file: "videos/relatorios-desempenho-delivery.mp4" },
+                    { title: "Integração com Pagamentos", file: "videos/integracao-pagamentos-delivery.mp4" }
+                ]
+            },
+            {
+                category: "🏥 Clínicas & Consultórios",
+                icon: "fa-stethoscope",
+                videos: [
+                    { title: "Prontuário Eletrônico", file: "videos/prontuario-eletronico.mp4" },
+                    { title: "Agendamento Online", file: "videos/agendamento-online-clinica.mp4" },
+                    { title: "Gestão de Pacientes", file: "videos/gestao-pacientes.mp4" },
+                    { title: "Controle Financeiro", file: "videos/controle-financeiro-clinica.mp4" },
+                    { title: "Prescrição Digital", file: "videos/prescricao-digital.mp4" },
+                    { title: "Sistema de Telemedicina", file: "videos/sistema-telemedicina.mp4" },
+                    { title: "Conformidade LGPD", file: "videos/conformidade-lgpd.mp4" },
+                    { title: "Relatórios Clínicos", file: "videos/relatorios-clinicos.mp4" },
+                    { title: "Painel Administrativo", file: "videos/painel-administrativo.mp4" }
+                ]
+            },
+            {
+                category: "💇 Salões & Barbearias",
+                icon: "fa-cut",
+                videos: [
+                    { title: "Agendamento Online", file: "videos/agendamento-online-salao.mp4" },
+                    { title: "Ficha de Clientes", file: "videos/ficha-clientes.mp4" },
+                    { title: "Controle de Procedimentos", file: "videos/controle-procedimentos.mp4" },
+                    { title: "Gestão de Profissionais", file: "videos/gestao-profissionais.mp4" },
+                    { title: "Venda de Produtos", file: "videos/venda-produtos.mp4" }
+                ]
+            },
+            {
+                category: "🎓 Escolas & Cursos",
+                icon: "fa-graduation-cap",
+                videos: [
+                    { title: "Portal do Aluno", file: "videos/portal-aluno.mp4" },
+                    { title: "Gestão Acadêmica", file: "videos/gestao-academica.mp4" },
+                    { title: "Controle de Matrículas", file: "videos/controle-matriculas.mp4" },
+                    { title: "Ambiente Virtual de Aprendizagem", file: "videos/ambiente-virtual.mp4" },
+                    { title: "Biblioteca Digital", file: "videos/biblioteca-digital.mp4" },
+                    { title: "Sistema de Avaliações", file: "videos/sistema-avaliacoes-escola.mp4" },
+                    { title: "Comunicação com Pais", file: "videos/comunicacao-pais.mp4" },
+                    { title: "Controle Financeiro", file: "videos/controle-financeiro-escola.mp4" }
+                ]
+            }
+        ];
+        
+        // Elementos DOM
+        const categoriesContainer = document.getElementById('categories-container');
+        const fullscreenPlayer = document.getElementById('fullscreenPlayer');
+        const fullscreenVideo = document.getElementById('fullscreenVideo');
+        const fullscreenTitle = document.getElementById('fullscreenTitle');
+        const closePlayer = document.getElementById('closePlayer');
+        
+        // Gerar o conteúdo do site
+        function generateSite() {
+            // Para cada categoria
+            videoData.forEach(category => {
+                // Criar elemento da categoria
+                const categoryElement = document.createElement('div');
+                categoryElement.className = 'category';
+                
+                // Criar cabeçalho da categoria
+                const categoryHeader = document.createElement('div');
+                categoryHeader.className = 'category-header';
+                
+                const categoryIcon = document.createElement('div');
+                categoryIcon.className = 'category-icon';
+                categoryIcon.innerHTML = `<i class="fas ${category.icon}"></i>`;
+                
+                const categoryTitle = document.createElement('h2');
+                categoryTitle.className = 'category-title';
+                categoryTitle.textContent = category.category;
+                
+                categoryHeader.appendChild(categoryIcon);
+                categoryHeader.appendChild(categoryTitle);
+                
+                // Criar grid de vídeos
+                const videosGrid = document.createElement('div');
+                videosGrid.className = 'videos-grid';
+                
+                // Para cada vídeo na categoria
+                category.videos.forEach(video => {
+                    // Criar card de vídeo
+                    const videoCard = document.createElement('div');
+                    videoCard.className = 'video-card';
+                    
+                    // Título do vídeo
+                    const videoTitle = document.createElement('div');
+                    videoTitle.className = 'video-title';
+                    videoTitle.textContent = video.title;
+                    
+                    // Container do vídeo
+                    const videoContainer = document.createElement('div');
+                    videoContainer.className = 'video-container';
+                    
+                    // Elemento de vídeo
+                    const videoElement = document.createElement('video');
+                    videoElement.src = video.file;
+                    videoElement.controls = true;
+                    videoElement.preload = "metadata";
+                    
+                    // Adicionar evento para abrir em tela cheia
+                    videoCard.addEventListener('click', () => openFullscreen(video.file, video.title));
+                    
+                    videoContainer.appendChild(videoElement);
+                    videoCard.appendChild(videoTitle);
+                    videoCard.appendChild(videoContainer);
+                    videosGrid.appendChild(videoCard);
+                });
+                
+                // Montar categoria
+                categoryElement.appendChild(categoryHeader);
+                categoryElement.appendChild(videosGrid);
+                categoriesContainer.appendChild(categoryElement);
+            });
+        }
+        
+        // Abrir vídeo em tela cheia
+        function openFullscreen(videoSrc, title) {
+            fullscreenVideo.src = videoSrc;
+            fullscreenTitle.textContent = title;
+            fullscreenPlayer.classList.add('active');
+            
+            // Pausar todos os outros vídeos
+            document.querySelectorAll('video').forEach(video => {
+                if (video !== fullscreenVideo) {
+                    video.pause();
+                }
+            });
+            
+            // Reproduzir automaticamente o vídeo em tela cheia
+            setTimeout(() => {
+                fullscreenVideo.play().catch(e => console.log("Autoplay bloqueado pelo navegador"));
+            }, 300);
+        }
+        
+        // Fechar player de tela cheia
+        closePlayer.addEventListener('click', () => {
+            fullscreenPlayer.classList.remove('active');
+            fullscreenVideo.pause();
+            fullscreenVideo.src = '';
+        });
+        
+        // Fechar com a tecla ESC
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && fullscreenPlayer.classList.contains('active')) {
+                fullscreenPlayer.classList.remove('active');
+                fullscreenVideo.pause();
+                fullscreenVideo.src = '';
+            }
+        });
+        
+        // Fechar clicando fora do vídeo
+        fullscreenPlayer.addEventListener('click', (e) => {
+            if (e.target === fullscreenPlayer) {
+                fullscreenPlayer.classList.remove('active');
+                fullscreenVideo.pause();
+                fullscreenVideo.src = '';
+            }
+        });
+        
+        // Inicializar o site
+        document.addEventListener('DOMContentLoaded', generateSite);
+        
+        // Efeito de movimento para os elementos de brilho
+        document.addEventListener('mousemove', (e) => {
+            const glow1 = document.querySelector('.glow-1');
+            const glow2 = document.querySelector('.glow-2');
+            
+            // Movimentar os elementos de brilho com o mouse (parallax suave)
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            
+            glow1.style.transform = `translate(${x * 30}px, ${y * 30}px)`;
+            glow2.style.transform = `translate(${-x * 30}px, ${-y * 30}px)`;
+        });
+    </script>
+</body>
+</html>

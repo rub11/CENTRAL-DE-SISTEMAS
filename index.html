@@ -1539,136 +1539,137 @@
         // js/main.js e js/animations.js combinados
 
         // Dados das áreas de atuação
+       
         const areasData = [
-            {
-                id: "restaurantes",
-                title: "Restaurantes & Lanchonetes",
-                icon: "fas fa-utensils",
-                description: "Sistemas completos para gestão de restaurantes, cardápios digitais, pedidos online e controle de delivery.",
-                projects: 8,
-                color: "#FF6B6B",
-                details: "Soluções personalizadas para o setor alimentício, incluindo sistemas de comanda eletrônica, gestão de mesas, controle de estoque de insumos, integração com apps de delivery, cardápios digitais interativos e muito mais.",
-                projectLinks: [
-                    {name: "Sistema de Comanda Eletrônica", url: "#"},
-                    {name: "Cardápio Digital Interativo", url: "#"},
-                    {name: "Gestão de Delivery Integrado", url: "#"},
-                    {name: "Controle de Estoque de Insumos", url: "#"},
-                    {name: "Sistema de Reservas Online", url: "#"},
-                    {name: "Relatórios de Desempenho", url: "#"},
-                    {name: "App para Clientes", url: "#"},
-                    {name: "Integração com Pagamentos", url: "#"}
-                ]
-            },
-            {
-                id: "comercio",
-                title: "Comércio & Lojas",
-                icon: "fas fa-store",
-                description: "Soluções para varejo físico e online, gestão de inventário, PDV e e-commerce integrado.",
-                projects: 10,
-                color: "#4ECDC4",
-                details: "Sistemas completos para comércio varejista e atacadista, com PDV avançado, controle de inventário em tempo real, gestão de múltiplas lojas, relatórios de vendas, integração com marketplaces e plataformas de e-commerce.",
-                projectLinks: [
-                    {name: "PDV Avançado", url: "#"},
-                    {name: "Controle de Inventário", url: "#"},
-                    {name: "E-commerce Personalizado", url: "#"},
-                    {name: "Gestão de Multi-lojas", url: "#"},
-                    {name: "Sistema de Fidelidade", url: "#"},
-                    {name: "Relatórios de Vendas", url: "#"},
-                    {name: "App para Vendedores", url: "#"},
-                    {name: "Integração com Marketplaces", url: "#"}
-                ]
-            },
-            {
-                id: "estoque",
-                title: "Estoque & Logística",
-                icon: "fas fa-boxes",
-                description: "Sistemas de controle de estoque, gestão de supply chain, rastreamento e logística inteligente.",
-                projects: 6,
-                color: "#FFD166",
-                details: "Soluções para gestão de estoque e logística, com controle de entrada e saída, rastreamento de produtos, gestão de fornecedores, previsão de demanda, otimização de espaço de armazenamento e relatórios de movimentação.",
-                projectLinks: [
-                    {name: "Controle de Entrada/Saída", url: "#"},
-                    {name: "Rastreamento de Produtos", url: "#"},
-                    {name: "Gestão de Fornecedores", url: "#"},
-                    {name: "Previsão de Demanda", url: "#"},
-                    {name: "Otimização de Armazenamento", url: "#"},
-                    {name: "Relatórios de Movimentação", url: "#"}
-                ]
-            },
-            {
-                id: "delivery",
-                title: "Delivery & Pedidos Online",
-                icon: "fas fa-motorcycle",
-                description: "Plataformas de delivery, apps para entregadores, gestão de pedidos e rastreamento em tempo real.",
-                projects: 7,
-                color: "#06D6A0",
-                details: "Sistemas completos para negócios de delivery, com plataforma de pedidos online, apps para clientes e entregadores, rastreamento em tempo real, gestão de zonas de entrega, sistema de avaliações e relatórios de desempenho.",
-                projectLinks: [
-                    {name: "Plataforma de Pedidos Online", url: "#"},
-                    {name: "App para Entregadores", url: "#"},
-                    {name: "Rastreamento em Tempo Real", url: "#"},
-                    {name: "Gestão de Zonas de Entrega", url: "#"},
-                    {name: "Sistema de Avaliações", url: "#"},
-                    {name: "Relatórios de Desempenho", url: "#"},
-                    {name: "Integração com Pagamentos", url: "#"}
-                ]
-            },
-            {
-                id: "clinicas",
-                title: "Clínicas & Consultórios",
-                icon: "fas fa-clinic-medical",
-                description: "Sistemas de gestão médica, agendamento online, prontuário eletrônico e telemedicina.",
-                projects: 9,
-                color: "#118AB2",
-                details: "Soluções especializadas para o setor de saúde, com prontuário eletrônico, agendamento online, gestão de pacientes, controle financeiro, prescrição digital, telemedicina e conformidade com legislação de proteção de dados.",
-                projectLinks: [
-                    {name: "Prontuário Eletrônico", url: "#"},
-                    {name: "Agendamento Online", url: "#"},
-                    {name: "Gestão de Pacientes", url: "#"},
-                    {name: "Controle Financeiro", url: "#"},
-                    {name: "Prescrição Digital", url: "#"},
-                    {name: "Sistema de Telemedicina", url: "#"},
-                    {name: "Conformidade LGPD", url: "#"},
-                    {name: "Relatórios Clínicos", url: "#"}
-                ]
-            },
-            {
-                id: "salones",
-                title: "Salões & Barbearias",
-                icon: "fas fa-cut",
-                description: "Sistemas para agendamento, gestão de clientes, controle de procedimentos e vendas de produtos.",
-                projects: 5,
-                color: "#EF476F",
-                details: "Soluções para o setor de beleza e bem-estar, com agendamento online, ficha de clientes, controle de procedimentos realizados, gestão de profissionais, venda de produtos e programas de fidelidade.",
-                projectLinks: [
-                    {name: "Agendamento Online", url: "#"},
-                    {name: "Ficha de Clientes", url: "#"},
-                    {name: "Controle de Procedimentos", url: "#"},
-                    {name: "Gestão de Profissionais", url: "#"},
-                    {name: "Venda de Produtos", url: "#"},
-                    {name: "Programa de Fidelidade", url: "#"}
-                ]
-            },
-            {
-                id: "escolas",
-                title: "Escolas & Cursos",
-                icon: "fas fa-graduation-cap",
-                description: "Plataformas de ensino, gestão acadêmica, controle de matrículas e ambiente virtual de aprendizagem.",
-                projects: 8,
-                color: "#7209B7",
-                details: "Sistemas educacionais completos, com gestão acadêmica, portal do aluno, controle de matrículas e mensalidades, ambiente virtual de aprendizagem, biblioteca digital, sistema de avaliações e comunicação com pais.",
-                projectLinks: [
-                    {name: "Portal do Aluno", url: "#"},
-                    {name: "Gestão Acadêmica", url: "#"},
-                    {name: "Controle de Matrículas", url: "#"},
-                    {name: "Ambiente Virtual de Aprendizagem", url: "#"},
-                    {name: "Biblioteca Digital", url: "#"},
-                    {name: "Sistema de Avaliações", url: "#"},
-                    {name: "Comunicação com Pais", url: "#"},
-                    {name: "Controle Financeiro", url: "#"}
-                ]
-            }
-        ];
+    {
+        id: "restaurantes",
+        title: "Restaurantes & Lanchonetes",
+        icon: "fas fa-utensils",
+        description: "Sistemas completos para gestão de restaurantes, cardápios digitais, pedidos online e controle de delivery.",
+        projects: 8,
+        color: "#FF6B6B",
+        details: "Soluções personalizadas para o setor alimentício, incluindo sistemas de comanda eletrônica, gestão de mesas, controle de estoque de insumos, integração com apps de delivery, cardápios digitais interativos e muito mais.",
+        projectLinks: [
+            {name: "Sistema de Comanda Eletrônica", url: "video/index.html"},
+            {name: "Cardápio Digital Interativo", url: "video/index.html"},
+            {name: "Gestão de Delivery Integrado", url: "video/index.html"},
+            {name: "Controle de Estoque de Insumos", url: "video/index.html"},
+            {name: "Sistema de Reservas Online", url: "video/index.html"},
+            {name: "Relatórios de Desempenho", url: "video/index.html"},
+            {name: "App para Clientes", url: "video/index.html"},
+            {name: "Integração com Pagamentos", url: "video/index.html"}
+        ]
+    },
+    {
+        id: "comercio",
+        title: "Comércio & Lojas",
+        icon: "fas fa-store",
+        description: "Soluções para varejo físico e online, gestão de inventário, PDV e e-commerce integrado.",
+        projects: 10,
+        color: "#4ECDC4",
+        details: "Sistemas completos para comércio varejista e atacadista, com PDV avançado, controle de inventário em tempo real, gestão de múltiplas lojas, relatórios de vendas, integração com marketplaces e plataformas de e-commerce.",
+        projectLinks: [
+            {name: "PDV Avançado", url: "video/index.html"},
+            {name: "Controle de Inventário", url: "video/index.html"},
+            {name: "E-commerce Personalizado", url: "video/index.html"},
+            {name: "Gestão de Multi-lojas", url: "video/index.html"},
+            {name: "Sistema de Fidelidade", url: "video/index.html"},
+            {name: "Relatórios de Vendas", url: "video/index.html"},
+            {name: "App para Vendedores", url: "video/index.html"},
+            {name: "Integração com Marketplaces", url: "video/index.html"}
+        ]
+    },
+    {
+        id: "estoque",
+        title: "Estoque & Logística",
+        icon: "fas fa-boxes",
+        description: "Sistemas de controle de estoque, gestão de supply chain, rastreamento e logística inteligente.",
+        projects: 6,
+        color: "#FFD166",
+        details: "Soluções para gestão de estoque e logística, com controle de entrada e saída, rastreamento de produtos, gestão de fornecedores, previsão de demanda, otimização de espaço de armazenamento e relatórios de movimentação.",
+        projectLinks: [
+            {name: "Controle de Entrada/Saída", url: "video/index.html"},
+            {name: "Rastreamento de Produtos", url: "video/index.html"},
+            {name: "Gestão de Fornecedores", url: "video/index.html"},
+            {name: "Previsão de Demanda", url: "video/index.html"},
+            {name: "Otimização de Armazenamento", url: "video/index.html"},
+            {name: "Relatórios de Movimentação", url: "video/index.html"}
+        ]
+    },
+    {
+        id: "delivery",
+        title: "Delivery & Pedidos Online",
+        icon: "fas fa-motorcycle",
+        description: "Plataformas de delivery, apps para entregadores, gestão de pedidos e rastreamento em tempo real.",
+        projects: 7,
+        color: "#06D6A0",
+        details: "Sistemas completos para negócios de delivery, com plataforma de pedidos online, apps para clientes e entregadores, rastreamento em tempo real, gestão de zonas de entrega, sistema de avaliações e relatórios de desempenho.",
+        projectLinks: [
+            {name: "Plataforma de Pedidos Online", url: "video/index.html"},
+            {name: "App para Entregadores", url: "video/index.html"},
+            {name: "Rastreamento em Tempo Real", url: "video/index.html"},
+            {name: "Gestão de Zonas de Entrega", url: "video/index.html"},
+            {name: "Sistema de Avaliações", url: "video/index.html"},
+            {name: "Relatórios de Desempenho", url: "video/index.html"},
+            {name: "Integração com Pagamentos", url: "video/index.html"}
+        ]
+    },
+    {
+        id: "clinicas",
+        title: "Clínicas & Consultórios",
+        icon: "fas fa-clinic-medical",
+        description: "Sistemas de gestão médica, agendamento online, prontuário eletrônico e telemedicina.",
+        projects: 9,
+        color: "#118AB2",
+        details: "Soluções especializadas para o setor de saúde, com prontuário eletrônico, agendamento online, gestão de pacientes, controle financeiro, prescrição digital, telemedicina e conformidade com legislação de proteção de dados.",
+        projectLinks: [
+            {name: "Prontuário Eletrônico", url: "video/index.html"},
+            {name: "Agendamento Online", url: "video/index.html"},
+            {name: "Gestão de Pacientes", url: "video/index.html"},
+            {name: "Controle Financeiro", url: "video/index.html"},
+            {name: "Prescrição Digital", url: "video/index.html"},
+            {name: "Sistema de Telemedicina", url: "video/index.html"},
+            {name: "Conformidade LGPD", url: "video/index.html"},
+            {name: "Relatórios Clínicos", url: "video/index.html"}
+        ]
+    },
+    {
+        id: "salones",
+        title: "Salões & Barbearias",
+        icon: "fas fa-cut",
+        description: "Sistemas para agendamento, gestão de clientes, controle de procedimentos e vendas de produtos.",
+        projects: 5,
+        color: "#EF476F",
+        details: "Soluções para o setor de beleza e bem-estar, com agendamento online, ficha de clientes, controle de procedimentos realizados, gestão de profissionais, venda de produtos e programas de fidelidade.",
+        projectLinks: [
+            {name: "Agendamento Online", url: "video/index.html"},
+            {name: "Ficha de Clientes", url: "video/index.html"},
+            {name: "Controle de Procedimentos", url: "video/index.html"},
+            {name: "Gestão de Profissionais", url: "video/index.html"},
+            {name: "Venda de Produtos", url: "video/index.html"},
+            {name: "Programa de Fidelidade", url: "video/index.html"}
+        ]
+    },
+    {
+        id: "escolas",
+        title: "Escolas & Cursos",
+        icon: "fas fa-graduation-cap",
+        description: "Plataformas de ensino, gestão acadêmica, controle de matrículas e ambiente virtual de aprendizagem.",
+        projects: 8,
+        color: "#7209B7",
+        details: "Sistemas educacionais completos, com gestão acadêmica, portal do aluno, controle de matrículas e mensalidades, ambiente virtual de aprendizagem, biblioteca digital, sistema de avaliações e comunicação com pais.",
+        projectLinks: [
+            {name: "Portal do Aluno", url: "video/index.html"},
+            {name: "Gestão Acadêmica", url: "video/index.html"},
+            {name: "Controle de Matrículas", url: "video/index.html"},
+            {name: "Ambiente Virtual de Aprendizagem", url: "video/index.html"},
+            {name: "Biblioteca Digital", url: "video/index.html"},
+            {name: "Sistema de Avaliações", url: "video/index.html"},
+            {name: "Comunicação com Pais", url: "video/index.html"},
+            {name: "Controle Financeiro", url: "video/index.html"}
+        ]
+    }
+];
 
         // Configurações editáveis
         const config = {
